@@ -10,7 +10,8 @@
   "main": "webapp/index.html",
   "dependencies": {
     "@sap/ui5-builder-webide-extension": "^1.1.9",
-    "signature_pad": "^5.0.10"
+    "signature_pad": "^5.0.10",
+    "ui5-tooling-modules": "^3.30.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.14.7",
