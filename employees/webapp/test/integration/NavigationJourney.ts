@@ -1,7 +1,7 @@
 /*global QUnit*/
 import opaTest from "sap/ui/test/opaQunit";
 import AppPage from "./pages/AppPage";
-import ViewPage from "./pages/AppPage";
+import ViewPage from "./pages/MasterPage";
 
 import Opa5 from "sap/ui/test/Opa5";
 
@@ -14,21 +14,19 @@ Opa5.extendConfig({
 	autoWait: true
 });
 
-opaTest("Should see the initial page of the app", function () {
+opaTest("Should see the initial page of the app", async function () {
 	// Arrangements
-	// eslint-disable-next-line @typescript-eslint/no-floating-promises
-	onTheAppPage.iStartMyUIComponent({
+	await onTheAppPage.iStartMyUIComponent({
 		componentConfig: {
 			name: "com.logaligroup.employees"
 		}
 	});
 
 	// Assertions
-	// onTheAppPage.iShouldSeeTheApp();   // MRM COMENTADO <PEND>
+	onTheAppPage.iShouldSeeTheApp();
 	onTheViewPage.iShouldSeeThePageView();
 
 
-	// Cleanup
-	// eslint-disable-next-line @typescript-eslint/no-floating-promises
-	onTheAppPage.iTeardownMyApp();
+	//Cleanup
+	await onTheAppPage.iTeardownMyApp();
 });

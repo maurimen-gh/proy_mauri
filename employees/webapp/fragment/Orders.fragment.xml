@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+    <Table
+        items="{northwind>Orders}"
+        growing="true"
+        growingThreshold="20">
+
+        <columns>
+            <Column>
+                <Text text="{i18n>orderID}"/>
+            </Column>
+            <Column>
+                <Text text="{i18n>freight}"/>
+            </Column>
+            <Column>
+                <Text text="{i18n>shipAddress}"/>
+            </Column>
+        </columns>
+
+        <items>
+            <ColumnListItem 
+                            type="Navigation"
+                            press="onNavToOrderDetails">
+                <cells>
+                    <Text text="{northwind>OrderID}"/>
+                    <Text text="{northwind>Freight}"/>
+                    <Text text="{northwind>ShipAddress}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+        
+    </Table>
+
+</core:FragmentDefinition>

@@ -39,6 +39,11 @@ server:
           - path: /v2
             url: https://services.odata.org
             destination: Northwind
+          - url: http://erp13.sap4practice.com:9037
+            client: '001'
+            authenticationType: BasicAuthentication
+            destination: ERP13
+            path: /sap
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
@@ -47,6 +52,10 @@ server:
           - urlPath: /v2/northwind/northwind.svc
             metadataPath: ./webapp/localService/mainService/metadata.xml
             mockdataPath: ./webapp/localService/mainService/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/YSAPUI5_SRV_01
+            metadataPath: ./webapp/localService/YSAPUI5_SRV_01/metadata.xml
+            mockdataPath: ./webapp/localService/YSAPUI5_SRV_01/data
             generateMockData: true
         annotations: []
 builder:

@@ -1,0 +1,112 @@
+<mvc:View   controllerName="com.logaligroup.employees.controller.Master"
+            xmlns="sap.m"
+            xmlns:f="sap.f"
+            xmlns:core="sap.ui.core"
+            xmlns:filter="sap.ui.comp.filterbar"
+            xmlns:mvc="sap.ui.core.mvc">
+
+    <f:DynamicPage>
+
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>title}" wrapping="true" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+
+            <f:DynamicPageHeader>
+
+                <filter:FilterBar
+                                    search="onFilterBarSearch"
+                                    clear="onFilterBarClear"
+                                    showClearOnFB="true">
+                                    <!-- showGoOnFB="false"
+                                    showFilterConfiguration="false"
+                                    useToolbar="false"> -->
+
+                    <filter:filterGroupItems>
+                    
+                        <filter:FilterGroupItem groupName="filters"
+                                                name="filterA"
+                                                label="{i18n>employee}"
+                                                visibleInFilterBar="true">
+
+                            <filter:control>
+                                <Input value="{filters>/Employee}"
+                                        liveChange="onFilterGeneric"/>
+                            </filter:control>
+
+                        </filter:FilterGroupItem>
+
+                        <filter:FilterGroupItem
+                                                groupName="filters"
+                                                name="filterB"
+                                                label="{i18n>country}"
+                                                visibleInFilterBar="true">  
+                            <filter:control>
+                                <ComboBox
+                                        items="{countries>/Countries}"
+                                        showSecondaryValues="true"
+                                        selectedKey="{filters>/Country}"
+                                        change="onFilterGeneric">
+                                    <core:ListItem key="{countries>code}" 
+                                            text="{countries>country}"
+                                            additionalText="{countries>code}"/>
+                                </ComboBox>
+                            </filter:control>
+                        </filter:FilterGroupItem>
+
+                    </filter:filterGroupItems>
+
+                </filter:FilterBar>
+            </f:DynamicPageHeader>
+
+
+        </f:header>
+
+        <f:content>
+            <Table  id="table"
+                    items="{northwind>/Employees}"
+                    growing="true">
+                
+                <columns>
+                    <Column width="6rem">
+                        <Label text="{i18n>employeeId}"/>
+                    </Column>
+                    <Column width="20rem">
+                        <Label text="{i18n>fullName}"/>
+                    </Column>
+                    <Column width="8rem">
+                        <Label text="{i18n>country}"/>
+                    </Column>
+                    <Column width="8rem">
+                        <Label text="{i18n>city}"/>
+                    </Column>
+                    <Column width="8rem">
+                        <Label text="{i18n>postalCode}"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                                    type="Navigation"
+                                    press="onNavToDetails">    
+                        <cells>
+                            <ObjectIdentifier title="{northwind>EmployeeID}"/>
+                            <Text text="{northwind>FirstName} {northwind>LastName}"/>
+                            <Text text="{northwind>Country}"/>
+                            <Text text="{northwind>City}"/>
+                            <Text text="{northwind>PostalCode}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+
+            </Table>
+        </f:content>
+
+    </f:DynamicPage>
+
+</mvc:View>

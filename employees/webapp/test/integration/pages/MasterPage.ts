@@ -1,15 +1,15 @@
 import Opa5 from "sap/ui/test/Opa5";
 
-const sViewName = "App";
+const sViewName = "Master";
 
-export default class AppPage extends Opa5 {
+export default class MasterPage extends Opa5 {
 	// Actions
 
 
 	// Assertions
-	iShouldSeeTheApp() {
+	iShouldSeeThePageView() {
 		return this.waitFor({
-			id: "app",
+			id: "page",
 			viewName: sViewName,
 			success: function () {
 				Opa5.assert.ok(true, "The " + sViewName + " view is displayed");
@@ -19,4 +19,5 @@ export default class AppPage extends Opa5 {
 	}
 
 }
+
 

@@ -1,0 +1,131 @@
+<mvc:View
+	controllerName="com.logaligroup.employees.controller.Details"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+
+    <uxap:ObjectPageLayout>
+
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+
+                <uxap:expandedContent>
+
+                    <HBox>
+                        <HBox   justifyContent="SpaceAround"
+                                width="100%">
+                            <VBox   alignItems="Center"
+                                    justifyContent="Center"
+                                    width="6.5rem">
+                                <Label text="{i18n>country}:" class="boldElement"/>
+                                <Text text="{northwind>Country}"/>
+                            </VBox>
+                            <VBox   alignItems="Center"
+                                    justifyContent="Center"
+                                    width="6.5rem">
+                                <Label text="{i18n>city}: " class="boldElement"/>
+                                <Text text="{northwind>City}"/>
+                            </VBox>
+                            <VBox   alignItems="Center"
+                                    justifyContent="Center"
+                                    width="6.5rem">
+                                <Label text="{i18n>postalCode}:" class="boldElement"/>
+                                <Text text="{northwind>PostalCode}"/>
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                    
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <HBox>
+                        <HBox   justifyContent="SpaceAround"
+                                width="100%">
+                            <VBox   alignItems="Center"
+                                    justifyContent="Center"
+                                    width="6.5rem">
+                                <Label text="{i18n>country}:" class="boldElement"/>
+                                <Text text="{northwind>Country}"/>
+                            </VBox>
+                            <VBox   alignItems="Center"
+                                    justifyContent="Center"
+                                    width="6.5rem">
+                                <Label text="{i18n>city}: " class="boldElement"/>
+                                <Text text="{northwind>City}"/>
+                            </VBox>
+                            <VBox   alignItems="Center"
+                                    justifyContent="Center"
+                                    width="6.5rem">
+                                <Label text="{i18n>postalCode}:" class="boldElement"/>
+                                <Text text="{northwind>PostalCode}"/>
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </uxap:snappedContent>
+
+                <uxap:expandedHeading>
+                    <Title text="{northwind>FirstName} {northwind>LastName} ({northwind>EmployeeID})"/>
+                </uxap:expandedHeading>
+                
+                <uxap:snappedHeading>
+                    <FlexBox fitContainer="true"
+                                alignItems="Center">
+                        <Title text="{northwind>FirstName} {northwind>LastName} ({northwind>EmployeeID})"/>
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:actions>
+                    <Button
+                            text="{i18n>create}"
+                            press="onCreatePress"
+                            type="Emphasized"
+                            width="6rem"/>
+                    <Button
+                            icon="sap-icon://decline"
+                            press="onClosePress"
+                            type="Reject"/>
+                </uxap:actions>
+
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <!-- <uxap:headerContent>
+            
+        </uxap:headerContent>
+
+        -->
+
+        <uxap:sections>
+
+
+          <uxap:ObjectPageSection>
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>incidence}">
+                        <uxap:blocks>
+                            <Panel id="tableIncidence"/>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+          </uxap:ObjectPageSection>  
+
+          <uxap:ObjectPageSection>
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>orders}">
+                        <uxap:blocks>
+                            <core:Fragment
+                                            fragmentName="com.logaligroup.employees.fragment.Orders"
+                                            type="XML"/>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+          </uxap:ObjectPageSection>  
+
+        </uxap:sections> 
+
+    </uxap:ObjectPageLayout>
+
+
+
+</mvc:View>
