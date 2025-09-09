@@ -7,8 +7,8 @@ import Context from "sap/ui/model/odata/v2/Context";
 import Utils from "../utils/Utils";
 import ODataListBinding from "sap/ui/model/odata/v2/ODataListBinding";
 import Filter from "sap/ui/model/Filter";
-import UploadSet, { UploadSet$BeforeUploadStartsEvent, UploadSet$UploadCompletedEvent } from "sap/m/upload/UploadSet";
-import UploadSetItem from "sap/m/upload/UploadSetItem";
+import UploadSet, { UploadSet$AfterItemRemovedEvent, UploadSet$BeforeUploadStartsEvent, UploadSet$UploadCompletedEvent } from "sap/m/upload/UploadSet";
+import UploadSetItem, { UploadSetItem$OpenPressedEvent } from "sap/m/upload/UploadSetItem";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Item from "sap/ui/core/Item";
 
@@ -157,9 +157,32 @@ export default class OrderDetails extends BaseController {
             ],
             template: new UploadSetItem({
                 fileName: "{zincidence>FileName}",
-                mediaType: '{zincidence>MimeType}'
+                mediaType: '{zincidence>MimeType}',
+                visibleEdit: false,
+                url: "/sap/opu/odata/sap/YSAPUI5_SRV_01/FilesSet",
+                openPressed: this.onOpenPressed.bind(this)
             })
         });
+    }
+
+    public async onAfterItemDelete (event : UploadSet$AfterItemRemovedEvent) : Promise<void>  {
+        const item = event.getParameter("item") as UploadSetItem,
+            bindingContext = item.getBindingContext("zincidence") as Context,
+            sPath = bindingContext.getPath() as string,
+            body = {
+                url: sPath
+            };
+        const utils = new Utils(this);
+        await utils.crud('delete', new JSONModel(body));
+        item.getBinding("items")?.refresh();
+    }
+
+    public  onOpenPressed (event : UploadSetItem$OpenPressedEvent) : void {
+        const item = event.getParameter("item") as UploadSetItem,
+            bindingContext = item.getBindingContext("zincidence") as Context,
+            sPath = bindingContext.getPath();
+        let url = "/sap/opu/odata/sap/YSAPUI5_SRV_01"+sPath+"/$value";
+            item.setUrl(url);    
     }
 
 }

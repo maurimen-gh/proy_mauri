@@ -152,7 +152,8 @@
                                                         id="upload"
                                                         uploadUrl="/sap/opu/odata/sap/YSAPUI5_SRV_01/FilesSet"
                                                         beforeUploadStarts="onBeforeUpload"
-                                                        uploadCompleted="onUploadCompleted"/>
+                                                        uploadCompleted="onUploadCompleted"
+                                                        afterItemRemoved="onAfterItemDelete"/>
                                         <!-- <upload:items>
                                                 <upload:UploadSetItem
                                                                 fileName="{zincidence>FileName}"
